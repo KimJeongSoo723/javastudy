@@ -9,20 +9,28 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         FastReader input = new FastReader();
-        HashMap<String,Integer> map = new HashMap<>();
-        int n1 = input.nextInt();
-        int n2 = input.nextInt();
-        int answer = 0;
+        TreeMap <Integer,Integer> tm = new TreeMap<>();
+        int testcase = input.nextInt();
 
-        for(int i=0;i<n1;i++){
-            map.put(input.next(),i);
-        }
+        for(int i=0; i<testcase; i++){
+            int test = input.nextInt();
 
-        for(int i=0;i<n2;i++){
-            String next = input.next();
-            if(map.get(next) != null) answer++;
+            for(int j=0; j<test; j++) {
+                String method = input.next();
+                int num = input.nextInt();
+
+                if (method.equals("I")) {
+                    tm.put(num, tm.getOrDefault(num, 0) + 1); //I인 경우
+                }
+                else if (tm.size() > 0) {
+                    int del = num == 1 ? tm.lastKey() : tm.firstKey();
+                    tm.put(del, tm.get(del) - 1);
+                    if(tm.get(del) == 0) tm.remove(del);
+                }
+            }
+            if (tm.size() == 0) System.out.println("EMPTY");
+            else System.out.println(tm.lastKey() + " " + tm.firstKey());
         }
-        System.out.print(answer);
     }
 
 
@@ -63,3 +71,4 @@ public class Main {
         }
     }
 }
+
