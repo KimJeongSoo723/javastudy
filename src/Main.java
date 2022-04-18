@@ -2,41 +2,43 @@
 // Co-authored by : -
 // Link : https://www.acmicpc.net/problem/2346
 
-
 import java.util.*;
 import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         FastReader input = new FastReader();
-        TreeMap <Integer,Integer> tm = new TreeMap<>();
-        int testcase = input.nextInt();
-
-        for(int i=0; i<testcase; i++){
+        Solution sol = new Solution();
+        int testnumber = input.nextInt();
+        for(int i=0; i<testnumber; i++) {
             int test = input.nextInt();
+            System.out.print(sol.calc(test));
+        }
+    }
+//
+//2 n 인경우 n
+//3 n 인경우 2 n 2 n-1.... 2 2까지의 합
+//    m n 인경우 m-1 n-1 m-1 n-2 m-1 m-1까지의 합
 
-            for(int j=0; j<test; j++) {
-                String method = input.next();
-                int num = input.nextInt();
+    static class Solution {
 
-                if (method.equals("I")) {
-                    tm.put(num, tm.getOrDefault(num, 0) + 1); //I인 경우
-                }
-                else if (tm.size() > 0) {
-                    int del = num == 1 ? tm.lastKey() : tm.firstKey();
-                    tm.put(del, tm.get(del) - 1);
-                    if(tm.get(del) == 0) tm.remove(del);
-                }
+        int calc (int n) {
+            int [] data = new int [n+1];
+            data[1] = 1;
+            data[2] = 2;
+            data[3] = 4;
+
+            for(int i=4;i<=n;i++) {
+                data[i] = data[i-1] + data[i-2] + data[i-3];
             }
-            if (tm.size() == 0) System.out.println("EMPTY");
-            else System.out.println(tm.lastKey() + " " + tm.firstKey());
+            return data[n];
         }
     }
 
 
 
 
-    static class FastReader {
+     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
 
