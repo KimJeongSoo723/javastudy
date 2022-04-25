@@ -6,39 +6,21 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
+    static int [][] map;
+    static int row;
+    static int col;
+
     public static void main(String[] args) throws IOException {
         FastReader input = new FastReader();
-        Solution sol = new Solution();
-        int testnumber = input.nextInt();
-        for(int i=0; i<testnumber; i++) {
-            int test = input.nextInt();
-            System.out.print(sol.calc(test));
-        }
-    }
-//
-//2 n 인경우 n
-//3 n 인경우 2 n 2 n-1.... 2 2까지의 합
-//    m n 인경우 m-1 n-1 m-1 n-2 m-1 m-1까지의 합
-
-    static class Solution {
-
-        int calc (int n) {
-            int [] data = new int [n+1];
-            data[1] = 1;
-            data[2] = 2;
-            data[3] = 4;
-
-            for(int i=4;i<=n;i++) {
-                data[i] = data[i-1] + data[i-2] + data[i-3];
-            }
-            return data[n];
-        }
+        row = input.nextInt();
+        col = input.nextInt();
     }
 
 
 
 
-     static class FastReader {
+
+    static class FastReader {
         BufferedReader br;
         StringTokenizer st;
 
