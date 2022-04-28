@@ -2,29 +2,43 @@
 // Co-authored by : -
 // Link : https://www.acmicpc.net/problem/2346
 
+import javax.sound.sampled.Line;
 import java.util.*;
 import java.io.*;
 
 
 public class Main {
-
+static int row;
+static int col;
+static int [][]map;
 
     public static void main(String[] args) throws IOException {
         FastReader input = new FastReader();
-        int testcase = 9;
-        int [] numbers = new int [testcase];
-        int max = 0;
-        int maxidx = 0;
-
-        for(int i =0; i<testcase; i++){
-            numbers[i] = input.nextInt();
-            if(numbers[i] > max) {
-                max = numbers[i];
-                maxidx = i+1;
+        row = input.nextInt();
+        col = input.nextInt();
+        for(int i=0; i<row; i++){
+            for(int j=0; j<col; j++){
+                map[i][j] = input.nextInt();
             }
         }
 
-        System.out.print(max + "\n" + maxidx);
+        bfs();
+    }
+
+    static int bfs(){
+
+    }
+
+    static class Location{
+        int r;
+        int c;
+        int count;
+
+        Location(int r,int c,int count){
+            this.r = r;
+            this.c = c;
+            this.count = count;
+        }
     }
 
 
