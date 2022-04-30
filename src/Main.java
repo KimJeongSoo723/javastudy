@@ -8,38 +8,12 @@ import java.io.*;
 
 
 public class Main {
-static int row;
-static int col;
-static int [][]map;
-
     public static void main(String[] args) throws IOException {
         FastReader input = new FastReader();
-        row = input.nextInt();
-        col = input.nextInt();
-        for(int i=0; i<row; i++){
-            for(int j=0; j<col; j++){
-                map[i][j] = input.nextInt();
-            }
-        }
-
-        bfs();
-    }
-
-    static int bfs(){
 
     }
 
-    static class Location{
-        int r;
-        int c;
-        int count;
 
-        Location(int r,int c,int count){
-            this.r = r;
-            this.c = c;
-            this.count = count;
-        }
-    }
 
 
 
