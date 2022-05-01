@@ -1,16 +1,73 @@
-// Authored by : KimJeongSoo723
-// Co-authored by : -
-// Link : https://www.acmicpc.net/problem/2346
-
-import javax.sound.sampled.Line;
 import java.util.*;
 import java.io.*;
 
 
 public class Main {
+    static int row;
+    static int col;
+    static int cabbage;
+    static int [][] map;
+    static boolean [][] visited;
+    static int [] dr = {-1,1,0,0};
+    static int [] dc = {0,0,-1,1};
+    static int count;
+    
     public static void main(String[] args) throws IOException {
         FastReader input = new FastReader();
+        int testcase = input.nextInt();
+        for(int i=0; i<testcase; i++){
+            col = input.nextInt();
+            row = input.nextInt();
+            cabbage = input.nextInt();
+            map = new int[row][col];
+            visited = new boolean[row][col];
 
+            for(int j=0;j<cabbage;j++){
+                int cabcol = input.nextInt();
+                int cabrow = input.nextInt();
+                map[cabrow][cabcol] = 1;
+            }
+            
+            for(int j=0;j<row;j++){
+                for(int k=0;k<col;k++){
+                    if(!visited[j][k] && map[j][k] == 1) bfs(j,k);
+                }
+            }
+
+            System.out.println(count);
+            count = 0;
+        }
+    }
+    
+    public static void bfs(int r, int c){
+        Queue <Location> q = new LinkedList<>();
+        q.offer(new Location(r,c));
+        visited[r][c] = true;
+        
+        while(!q.isEmpty()){
+            Location now = q.poll();
+            for(int i=0; i<4; i++){
+                int nextr = now.r + dr[i];
+                int nextc = now.c + dc[i];
+                
+                if(nextr<0 || nextc<0 || nextr>=row || nextc>=col) continue;
+                if(visited[nextr][nextc] || map[nextr][nextc] == 0) continue;
+                visited[nextr][nextc] = true;
+                q.offer(new Location(nextr,nextc));
+            }
+        }
+
+        count++;
+    }
+    
+    public static class Location{
+        int r;
+        int c;
+        
+        Location(int r,int c){
+            this.r = r;
+            this.c = c;
+        }
     }
 
 
